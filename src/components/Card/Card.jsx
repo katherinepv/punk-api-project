@@ -1,13 +1,13 @@
 import "./Card.scss";
+import Button from "../Button/Button";
 
-const Card = () => {
+const Card = ({ name, image, tagline }) => {
   return (
     <div className="card">
-      <img className="card__image" src="" alt="beer image" />
-      <h3 className="card__title">Beer Name</h3>
-      <p className="card__description">
-        This beer tastes like beer and goes well in a glass.
-      </p>
+      <img className="card__image" src={image} alt="beer" />
+      <h3 className="card__title">{name}</h3>
+      <p className="card__tagline">"{tagline}"</p>
+      <Button classText="card__button" buttonText="Find out more" />
     </div>
   );
 };

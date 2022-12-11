@@ -1,0 +1,8 @@
+@use "../../assets/sass/variables" as *;
+
+.search-menu {
+    background-color: $color-bluegreen;
+    color: $color-yellow;
+    border-style: solid;
+    border-color: $color-tangerine;
+}

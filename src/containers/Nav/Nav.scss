@@ -1,6 +1,15 @@
+@use "../../assets/sass/variables" as *;
+
 .nav {
     border-style: solid;
-    background-color: rgb(55, 87, 192);
+    background-color: $color-navy;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    color: $color-yellow;
+    height: 5rem;
+
+    &__heading {
+        font-size: 3rem;
+    }
 }
