@@ -1,7 +1,6 @@
 @use "../../assets/sass/variables" as *;
 
 .nav {
-    border-style: solid;
     background-color: $color-navy;
     display: flex;
     justify-content: space-between;
@@ -11,5 +10,19 @@
 
     &__heading {
         font-size: 3rem;
+    }
+
+    &__icon--search {
+        padding-left: 0.5rem;
+        width: 2.5rem;
+        height: auto;
+        filter: invert(100%) sepia(1%) saturate(2282%) hue-rotate(210deg) brightness(108%) contrast(86%);
+    }
+
+    &__icon--profile {
+        padding-right: 0.5rem;
+        width: 2.5rem;
+        height: auto;
+        // filter: invert(100%) sepia(1%) saturate(2282%) hue-rotate(210deg) brightness(108%) contrast(86%);
     }
 }

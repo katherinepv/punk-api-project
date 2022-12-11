@@ -3,7 +3,9 @@ import "./SearchFilterCheckbox";
 const SearchFilterCheckbox = ({ checkboxDescriptor }) => {
   return (
     <form>
-      <label htmlFor={checkboxDescriptor}>{checkboxDescriptor}</label>
+      <label className="search-checkbox" htmlFor={checkboxDescriptor}>
+        {checkboxDescriptor}
+      </label>
       <input
         type="checkbox"
         id={checkboxDescriptor}

@@ -1,1 +1,8 @@
 @use "../../assets/sass/variables" as *;
+
+
+@media screen and(min-width: 992px) {
+    .search-checkbox {
+        color: $color-navy;
+    }
+}

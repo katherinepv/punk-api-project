@@ -9,7 +9,6 @@ const App = () => {
   return (
     <div>
       <Nav />
-      <SearchMenu />
       <Main title="All Beers" beersArr={beers} />
     </div>
   );
