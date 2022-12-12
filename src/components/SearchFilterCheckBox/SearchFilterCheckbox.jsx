@@ -1,6 +1,6 @@
 import "./SearchFilterCheckbox";
 
-const SearchFilterCheckbox = ({ checkboxDescriptor }) => {
+const SearchFilterCheckbox = ({ checkboxDescriptor, handleChange }) => {
   return (
     <form>
       <label className="search-checkbox" htmlFor={checkboxDescriptor}>
@@ -8,6 +8,7 @@ const SearchFilterCheckbox = ({ checkboxDescriptor }) => {
       </label>
       <input
         type="checkbox"
+        onChange={handleChange}
         id={checkboxDescriptor}
         name={checkboxDescriptor}
       />

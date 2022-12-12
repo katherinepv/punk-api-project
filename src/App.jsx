@@ -1,8 +1,10 @@
 import "./App.scss";
 import Nav from "./containers/Nav/Nav";
+import SearchBox from "./components/SearchBox/SearchBox";
 import BeerContainer from "./containers/BeerContainer/BeerContainer";
 import { useState } from "react";
 import { useEffect } from "react";
+import SearchFilterCheckbox from "./components/SearchFilterCheckBox/SearchFilterCheckbox";
 // import SearchMenu from "./containers/SearchMenu/SearchMenu";
 
 const App = () => {
@@ -82,7 +84,26 @@ const App = () => {
     beersPageFour,
     beersPageFive
   );
-  console.log(allBeers);
+
+  // filter by user search input
+
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleInput = (event) => {
+    const userSearchInput = event.target.value.toLowerCase();
+    setSearchTerm(userSearchInput);
+  };
+
+  const filteredBeersBySearch = allBeers.filter((beer) => {
+    const beerNameLower = beer.name.toLowerCase();
+    return beerNameLower.includes(searchTerm);
+  });
+
+  // filter by checkboxes
+  const [searchFilter, setSearchFilter] = useState("");
+  const handleChange = (event) => {
+    setSearchFilter(event.target.value);
+  };
 
   // all beers from classic range
   const [classicBeers, setClassicBeers] = useState([]);
@@ -102,7 +123,27 @@ const App = () => {
   return (
     <div>
       <Nav />
-      {beersPageOne && <BeerContainer beersArr={allBeers} />}
+      <SearchBox
+        label="Search name: "
+        searchTerm={searchTerm}
+        handleInput={handleInput}
+      />
+      <SearchFilterCheckbox
+        handleChange={handleChange}
+        checkboxDescriptor="High ABV (>6.0%)"
+      />
+      <SearchFilterCheckbox
+        handleChange={handleChange}
+        checkboxDescriptor="Classic Range"
+      />
+      <SearchFilterCheckbox
+        handleChange={handleChange}
+        checkboxDescriptor="Acidic (pH < 4)"
+      />
+      <BeerContainer
+        title="Search results: "
+        beersArr={filteredBeersBySearch}
+      />
     </div>
   );
 };
