@@ -10,7 +10,7 @@ const App = () => {
 
   const getBeers = async () => {
     const response = await fetch(
-      "https://api.punkapi.com/v2/beers?page=1per_page=80"
+      "https://api.punkapi.com/v2/beers?page=1&per_page=80"
     );
     const data = await response.json();
     setBeers(data);
