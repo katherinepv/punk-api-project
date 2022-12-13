@@ -17,12 +17,11 @@ const BeerContainer = ({ title, beersArr }) => {
     .map(({ id, name, image_url, tagline }) => (
       <Card key={id} name={name} image={image_url} tagline={tagline} />
     ));
-  console.log(acidicCardsJSX);
 
   return (
     <div>
       <h3>{title}</h3>
-      <div className="card-container">{acidicCardsJSX}</div>
+      <div className="card-container">{allBeerCardsJSX}</div>
       {/* <div className="card-container">{allBeerCardsJSX}</div> */}
     </div>
   );

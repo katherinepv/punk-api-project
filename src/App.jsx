@@ -8,122 +8,64 @@ import SearchFilterCheckbox from "./components/SearchFilterCheckBox/SearchFilter
 // import SearchMenu from "./containers/SearchMenu/SearchMenu";
 
 const App = () => {
-  // all beers from page 1 (0-80)
-  const [beersPageOne, setBeersPageOne] = useState([]);
-  const getBeersPageOne = async () => {
-    const response = await fetch(
-      "https://api.punkapi.com/v2/beers?page=1&per_page=80"
-    );
-    const data = await response.json();
-    setBeersPageOne(data);
+  // all beers from API
+  const [beers, setBeers] = useState([]);
+
+  const getBeers = async () => {
+    let beersArr = [];
+    for (let index = 1; index < 6; index++) {
+      let response = await fetch(
+        `https://api.punkapi.com/v2/beers?page=${[index]}&per_page=80`
+      );
+      const data = await response.json();
+      beersArr.push(data);
+    }
+    setBeers(beersArr.flat());
   };
 
   useEffect(() => {
-    getBeersPageOne();
+    getBeers();
   }, []);
 
-  // all beers from page 2 (81-160)
-  const [beersPageTwo, setBeersPageTwo] = useState([]);
-  const getBeersPageTwo = async () => {
-    const response = await fetch(
-      "https://api.punkapi.com/v2/beers?page=2&per_page=80"
-    );
-    const data = await response.json();
-    setBeersPageTwo(data);
-  };
+  // // filter by user search input
 
-  useEffect(() => {
-    getBeersPageTwo();
-  }, []);
+  // const [searchTerm, setSearchTerm] = useState("");
 
-  // all beers from page 3 (161-240)
-  const [beersPageThree, setBeersPageThree] = useState([]);
-  const getBeersPageThree = async () => {
-    const response = await fetch(
-      "https://api.punkapi.com/v2/beers?page=3&per_page=80"
-    );
-    const data = await response.json();
-    setBeersPageThree(data);
-  };
+  // const handleInput = (event) => {
+  //   const userSearchInput = event.target.value.toLowerCase();
+  //   setSearchTerm(userSearchInput);
+  // };
 
-  useEffect(() => {
-    getBeersPageThree();
-  }, []);
+  // const filteredBeersBySearch = allBeers.filter((beer) => {
+  //   const beerNameLower = beer.name.toLowerCase();
+  //   return beerNameLower.includes(searchTerm);
+  // });
 
-  // all beers from page 4 (241-320)
-  const [beersPageFour, setBeersPageFour] = useState([]);
-  const getBeersPageFour = async () => {
-    const response = await fetch(
-      "https://api.punkapi.com/v2/beers?page=4&per_page=80"
-    );
-    const data = await response.json();
-    setBeersPageFour(data);
-  };
+  // // filter by checkboxes
+  // const [searchFilter, setSearchFilter] = useState("");
+  // const handleChange = (event) => {
+  //   setSearchFilter(event.target.value);
+  // };
 
-  useEffect(() => {
-    getBeersPageFour();
-  }, []);
+  // // all beers from classic range
+  // const [classicBeers, setClassicBeers] = useState([]);
+  // const getClassicBeers = async () => {
+  //   const response = await fetch(
+  //     "https://api.punkapi.com/v2/beers?brewed_before=01-2010&per_page=80"
+  //   );
+  //   const data = await response.json();
+  //   setClassicBeers(data);
+  //   console.log(data);
+  // };
 
-  // all beers from page 5 (320-325)
-  const [beersPageFive, setBeersPageFive] = useState([]);
-  const getBeersPageFive = async () => {
-    const response = await fetch(
-      "https://api.punkapi.com/v2/beers?page=5&per_page=80"
-    );
-    const data = await response.json();
-    setBeersPageFive(data);
-  };
-
-  useEffect(() => {
-    getBeersPageFive();
-  }, []);
-
-  const allBeers = beersPageOne.concat(
-    beersPageTwo,
-    beersPageThree,
-    beersPageFour,
-    beersPageFive
-  );
-
-  // filter by user search input
-
-  const [searchTerm, setSearchTerm] = useState("");
-
-  const handleInput = (event) => {
-    const userSearchInput = event.target.value.toLowerCase();
-    setSearchTerm(userSearchInput);
-  };
-
-  const filteredBeersBySearch = allBeers.filter((beer) => {
-    const beerNameLower = beer.name.toLowerCase();
-    return beerNameLower.includes(searchTerm);
-  });
-
-  // filter by checkboxes
-  const [searchFilter, setSearchFilter] = useState("");
-  const handleChange = (event) => {
-    setSearchFilter(event.target.value);
-  };
-
-  // all beers from classic range
-  const [classicBeers, setClassicBeers] = useState([]);
-  const getClassicBeers = async () => {
-    const response = await fetch(
-      "https://api.punkapi.com/v2/beers?brewed_before=01-2010&per_page=80"
-    );
-    const data = await response.json();
-    setClassicBeers(data);
-    console.log(data);
-  };
-
-  useEffect(() => {
-    getClassicBeers();
-  }, []);
+  // useEffect(() => {
+  //   getClassicBeers();
+  // }, []);
 
   return (
     <div>
       <Nav />
-      <SearchBox
+      {/* <SearchBox
         label="Search name: "
         searchTerm={searchTerm}
         handleInput={handleInput}
@@ -139,11 +81,8 @@ const App = () => {
       <SearchFilterCheckbox
         handleChange={handleChange}
         checkboxDescriptor="Acidic (pH < 4)"
-      />
-      <BeerContainer
-        title="Search results: "
-        beersArr={filteredBeersBySearch}
-      />
+      /> */}
+      <BeerContainer title="Search results: " beersArr={beers} />
     </div>
   );
 };
