@@ -2,7 +2,7 @@ import "./BeerContainer.scss";
 import Card from "../../components/Card/Card";
 
 const BeerContainer = ({ title, beersArr }) => {
-  const allBeerCardsJSX = beersArr.map(({ id, name, image_url, tagline }) => (
+  const beerCardsJSX = beersArr.map(({ id, name, image_url, tagline }) => (
     <Card key={id} name={name} image={image_url} tagline={tagline} />
   ));
 
@@ -21,7 +21,7 @@ const BeerContainer = ({ title, beersArr }) => {
   return (
     <div>
       <h3>{title}</h3>
-      <div className="card-container">{allBeerCardsJSX}</div>
+      <div className="card-container">{beerCardsJSX}</div>
       {/* <div className="card-container">{allBeerCardsJSX}</div> */}
     </div>
   );
