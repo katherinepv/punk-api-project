@@ -8,7 +8,6 @@ import FilterCheckboxes from "./components/FilterCheckBoxes/FilterCheckboxes";
 // import SearchMenu from "./containers/SearchMenu/SearchMenu";
 
 const App = () => {
-  // filter by user name search input
   const [beers, setBeers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterGroup, setFilterGroup] = useState("all");
@@ -57,32 +56,11 @@ const App = () => {
   const filteredBeers = getFilteredBeers(filterGroup);
   console.log(filteredBeers);
 
+  // filter by user name search input on top of filters
   const filterBeersBySearch = filteredBeers.filter((beer) => {
     const beerNameLower = beer.name.toLowerCase();
     return beerNameLower.includes(searchTerm);
   });
-
-  // if ({ searchTerm } === true) {
-  //   beers.filter((beer) => {
-  //     const beerNameLower = beer.name.toLowerCase();
-  //     return beerNameLower.includes(searchTerm);
-  //   });
-  // };
-
-  // // all beers from classic range
-  // const [classicBeers, setClassicBeers] = useState([]);
-  // const getClassicBeers = async () => {
-  //   const response = await fetch(
-  //     "https://api.punkapi.com/v2/beers?brewed_before=01-2010&per_page=80"
-  //   );
-  //   const data = await response.json();
-  //   setClassicBeers(data);
-  //   console.log(data);
-  // };
-
-  // useEffect(() => {
-  //   getClassicBeers();
-  // }, []);
 
   useEffect(() => {
     getBeers(searchTerm, filterGroup);
