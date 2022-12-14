@@ -17,6 +17,7 @@ const App = () => {
     const userSearchInput = event.target.value.toLowerCase();
     setSearchTerm(userSearchInput);
   };
+  console.log(searchTerm);
 
   // filter by checkboxes
 
@@ -58,8 +59,7 @@ const App = () => {
 
   const filterBeersBySearch = filteredBeers.filter((beer) => {
     const beerNameLower = beer.name.toLowerCase();
-    const filteredBeersBySearch = beerNameLower.includes(searchTerm);
-    return filteredBeersBySearch;
+    return beerNameLower.includes(searchTerm);
   });
 
   // if ({ searchTerm } === true) {
@@ -95,6 +95,7 @@ const App = () => {
         <div className="filters">
           <SearchBox
             label="Search name: "
+            value={searchTerm}
             searchTerm={searchTerm}
             onInput={handleInput}
           />

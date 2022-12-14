@@ -1,6 +1,6 @@
 import "./SearchBox.scss";
 
-const SearchBox = ({ label, searchTerm, handleInput }) => {
+const SearchBox = ({ label, searchTerm, onInput }) => {
   const capitalizedLabel = label[0].toUpperCase() + label.slice(1);
 
   return (
@@ -13,7 +13,7 @@ const SearchBox = ({ label, searchTerm, handleInput }) => {
         type="text"
         name={label}
         value={searchTerm}
-        onInput={handleInput}
+        onInput={onInput}
       />
     </form>
   );
