@@ -1,7 +1,7 @@
 import "./BeerContainer.scss";
 import Card from "../../components/Card/Card";
 
-const BeerContainer = ({ title, beersArr }) => {
+const BeerContainer = ({ title, beersArr = [] }) => {
   const beerCardsJSX = beersArr.map(({ id, name, image_url, tagline }) => (
     <Card key={id} name={name} image={image_url} tagline={tagline} />
   ));

@@ -18,11 +18,6 @@ const App = () => {
     setSearchTerm(userSearchInput);
   };
 
-  const filteredBeersBySearch = beers.filter((beer) => {
-    const beerNameLower = beer.name.toLowerCase();
-    return beerNameLower.includes(searchTerm);
-  });
-
   // filter by checkboxes
 
   const handleChange = (event) => {
@@ -43,18 +38,29 @@ const App = () => {
     setBeers(beersArr.flat());
   };
 
-  // const filteredBeers = ({ filterGroup }) => {
-  // let filteredBeers
-  //   if (filterGroup === "high ABV") {
-  //     return beers.filter((beer) => beer.abv >= 6);
-  //   } else if (filterGroup === "classig range") {
-  //     return beers.filter(
-  //       (beer) => parseInt(beer.first_brewed.split("/").pop()) < 2010
-  //     );
-  //   } else if (filterGroup === "acidic") {
-  //     return beers.filter((beer) => beer.ph <= 4);
-  //   }
-  // };
+  const getFilteredBeers = (filterGroup) => {
+    console.log(filterGroup);
+    if (filterGroup === "high abv") {
+      return beers.filter((beer) => beer.abv >= 6);
+    } else if (filterGroup === "classic range") {
+      return beers.filter(
+        (beer) => parseInt(beer.first_brewed.split("/").pop()) < 2010
+      );
+    } else if (filterGroup === "acidic") {
+      return beers.filter((beer) => beer.ph <= 4);
+    } else {
+      return beers;
+    }
+  };
+
+  const filteredBeers = getFilteredBeers(filterGroup);
+  console.log(filteredBeers);
+
+  const filterBeersBySearch = filteredBeers.filter((beer) => {
+    const beerNameLower = beer.name.toLowerCase();
+    const filteredBeersBySearch = beerNameLower.includes(searchTerm);
+    return filteredBeersBySearch;
+  });
 
   // if ({ searchTerm } === true) {
   //   beers.filter((beer) => {
@@ -79,8 +85,8 @@ const App = () => {
   // }, []);
 
   useEffect(() => {
-    getBeers(searchTerm);
-  }, [searchTerm]);
+    getBeers(searchTerm, filterGroup);
+  }, [searchTerm, filterGroup]);
 
   return (
     <div>
@@ -90,7 +96,7 @@ const App = () => {
           <SearchBox
             label="Search name: "
             searchTerm={searchTerm}
-            handleInput={handleInput}
+            onInput={handleInput}
           />
           <FilterCheckboxes
             onChange={handleChange}
@@ -101,7 +107,7 @@ const App = () => {
         </div>
         <BeerContainer
           title={`Search results for ${searchTerm}: `}
-          beersArr={beers}
+          beersArr={filterBeersBySearch}
         />
       </div>
     </div>
