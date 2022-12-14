@@ -1,2 +1,13 @@
 @use "./assets/sass/variables" as *;
 @use "./assets/sass/reset" as *;
+
+
+.filters {
+    background-color: $color-lightblue;
+}
+
+@media screen and (min-width: 992px) {
+    .main {
+        display: flex;
+    }
+}

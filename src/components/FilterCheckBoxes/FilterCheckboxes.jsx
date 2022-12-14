@@ -1,4 +1,4 @@
-import "./FilterCheckboxes";
+import "./FilterCheckboxes.scss";
 
 const FilterCheckboxes = ({ onChange, selected, label, options }) => {
   return (
@@ -9,7 +9,10 @@ const FilterCheckboxes = ({ onChange, selected, label, options }) => {
         const optionCapitalized =
           optionLower[0].toUpperCase() + optionLower.slice(1);
         return (
-          <div key={"filter-checkbox" + option + index}>
+          <div
+            className="filter-checkbox"
+            key={"filter-checkbox" + option + index}
+          >
             <input
               type="checkbox"
               name="filter"

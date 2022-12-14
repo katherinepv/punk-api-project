@@ -1,8 +1,24 @@
 @use "../../assets/sass/variables" as *;
 
+.filter-checkboxes {
+    display: flex;
+    justify-content: space-evenly;
+    padding-bottom: 1rem;
 
-@media screen and(min-width: 992px) {
-    .search-checkbox {
-        color: $color-navy;
+}
+
+@media screen and (min-width: 992px) {
+    .filter-checkboxes {
+        display: flex;
+        flex-direction: column;
+        padding-left: 1rem;
+        font-size: 1.5rem;
     }
 }
+
+
+// @media screen and(min-width: 992px) {
+//     .filter-checkbox {
+//         color: $color-navy;
+//     }
+// }

@@ -1,12 +1,5 @@
 @use "../../assets/sass/variables" as *;
 
-.main {
-    border-style: solid;
-    padding: 1rem;
-    background-color: $color-lightblue;
-    color: $color-navy;
-}
-
 .card-container {
     display: flex;
     flex-wrap: wrap;
@@ -14,14 +7,18 @@
 }
 
 
-@media screen and (min-width: 1024px) {
-    .card-container {
-        // display: flex;
-        // flex-wrap: wrap;
-        // justify-content: space-between;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-        gap: 1rem;
-        // justify-items: center;
+@media screen and (min-width: 992px) {
+    .card-section {
+        background-color: white;
+        padding: 1rem;
     }
+
+    .card-container {
+        display: flex;
+        flex-grow: 1;
+        justify-content: space-between;
+
+    }
+
+
 }
