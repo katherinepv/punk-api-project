@@ -1,15 +1,51 @@
 import "./Card.scss";
 import Button from "../Button/Button";
+import whiteCross from "../../assets/images/white-cross.png";
+import { useState } from "react";
 
-const Card = ({ name, image, tagline }) => {
-  return (
-    <div className="card">
+// as a prop:
+// , "food pairing"
+const Card = ({ name, image, tagline, description, food_pairing }) => {
+  const [showInfo, setShowInfo] = useState(false);
+
+  const handleClick = () => {
+    setShowInfo(!showInfo);
+  };
+
+  const briefJSX = (
+    // className="card__content card__content--brief"
+    <>
       <img className="card__image" src={image} alt="beer" />
       <h3 className="card__title">{name}</h3>
       <p className="card__tagline">"{tagline}"</p>
-      <Button classText="card__button" buttonText="Find out more" />
+      <div onClick={handleClick}>
+        <Button classText="card__button" buttonText="Find out more" />
+      </div>
+    </>
+  );
+
+  const infoJSX = (
+    <div className="card__content card__content--info">
+      <img
+        src={whiteCross}
+        className="card__cross"
+        onClick={handleClick}
+        alt="Close extra information"
+      />
+      <h3>{name}</h3>
+      {description.split(".").map((sentence, index) => (
+        <p key={name + index}>{sentence + "."}</p>
+      ))}
+      <h4>Pairs well with:</h4>
+      <ul>
+        {food_pairing.map((sentence, index) => (
+          <li key={name + index + "food pairing"}>{sentence + "."}</li>
+        ))}
+      </ul>
     </div>
   );
+
+  return <div className="card">{showInfo ? infoJSX : briefJSX}</div>;
 };
 
 export default Card;

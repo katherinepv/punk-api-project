@@ -34,18 +34,24 @@
 }
 
 @media screen and (min-width: 992px) {
+
     .card {
+        width: 15vw;
         margin: 1rem 0.5rem 0.5rem 0.5rem;
+        border-radius: 0.5rem;
+        background-color: $color-lightgrey;
+        padding: 0.2rem;
+
         display: flex;
         flex-direction: column;
-        max-width: 12.5rem;
+        max-width: fit-content;
         justify-content: center;
 
 
         &__image {
             margin: 0.5rem auto;
-            max-width: 40%;
-            max-height: 40%;
+            height: 50%;
+            width: auto;
         }
 
         &__name {
@@ -57,9 +63,23 @@
             font-style: italic;
         }
 
-    }
+        &__button {
+            background-color: $color-tangerine;
+            margin: 0.5rem 0.2rem;
+            padding: 0.25rem;
+            font-size: 0.9rem;
+        }
 
-    .card:hover {
-        box-shadow: 0.3rem 0.3rem 0.3rem 0.3rem $color-bluegreen;
+
+        &__cross {
+            height: 1.5rem;
+            width: 1.5rem;
+            right: 1.5rem;
+            top: 1rem;
+        }
+
+        .card:hover {
+            box-shadow: 0.3rem 0.3rem 0.3rem 0.3rem $color-bluegreen;
+        }
     }
 }
