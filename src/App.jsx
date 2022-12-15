@@ -5,12 +5,16 @@ import BeerContainer from "./containers/BeerContainer/BeerContainer";
 import { useState } from "react";
 import { useEffect } from "react";
 import FilterCheckboxes from "./components/FilterCheckBoxes/FilterCheckboxes";
+import Button from "./components/Button/Button";
+import blackCross from "./assets/images/black-cross.png";
 // import SearchMenu from "./containers/SearchMenu/SearchMenu";
 
 const App = () => {
   const [beers, setBeers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterGroup, setFilterGroup] = useState("all");
+  const [showRandom, setShowRandom] = useState(false);
+  const [randomBeer, setRandomBeer] = useState([]);
 
   const handleInput = (event) => {
     const userSearchInput = event.target.value.toLowerCase();
@@ -66,6 +70,21 @@ const App = () => {
     getBeers(searchTerm, filterGroup);
   }, [searchTerm, filterGroup]);
 
+  useEffect(() => {
+    getRandomBeer();
+  }, []);
+
+  // for surprise me button
+  const handleClick = () => {
+    setShowRandom(!showRandom);
+  };
+
+  const getRandomBeer = async () => {
+    let response = await fetch("https://api.punkapi.com/v2/beers/random");
+    const data = await response.json();
+    setRandomBeer(data);
+  };
+
   return (
     <div>
       <Nav />
@@ -83,11 +102,29 @@ const App = () => {
             label="Filter by:"
             options={["All", "High ABV", "Classic Range", "Acidic"]}
           />
+          <div onClick={handleClick}>
+            <Button buttonText="Surprise Me!" />
+          </div>
         </div>
-        <BeerContainer
-          title={`Search results for ${searchTerm}: `}
-          beersArr={filterBeersBySearch}
-        />
+
+        <div className="random">
+          {showRandom ? (
+            <div className="random-beer-container">
+              <img
+                src={blackCross}
+                className="card__cross"
+                onClick={handleClick}
+                alt="Close random beer"
+              />
+              <BeerContainer title="We recommend:" beersArr={randomBeer} />
+            </div>
+          ) : (
+            <BeerContainer
+              title="Search results:"
+              beersArr={filterBeersBySearch}
+            />
+          )}
+        </div>
       </div>
     </div>
   );
