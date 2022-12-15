@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import FilterCheckboxes from "./components/FilterCheckBoxes/FilterCheckboxes";
 import Button from "./components/Button/Button";
 import blackCross from "./assets/images/black-cross.png";
+import Favourites from "./containers/Favourites/Favourites";
 // import SearchMenu from "./containers/SearchMenu/SearchMenu";
 
 const App = () => {
@@ -15,6 +16,8 @@ const App = () => {
   const [filterGroup, setFilterGroup] = useState("all");
   const [showRandom, setShowRandom] = useState(false);
   const [randomBeer, setRandomBeer] = useState([]);
+  const [favouriteBeers, setFavouriteBeers] = useState([]);
+  const [favouriteBeerInput, setFavouriteBeerInput] = useState("");
 
   const handleInput = (event) => {
     const userSearchInput = event.target.value.toLowerCase();
@@ -85,6 +88,24 @@ const App = () => {
     setRandomBeer(data);
   };
 
+  // for favourites list
+
+  // this listens to the beer card that the user has chosen to set as a favourite
+  const getFavBeerInput = (event) => {
+    let userFavBeerInput = event.target.value;
+    setFavouriteBeerInput(userFavBeerInput);
+  };
+
+  // user can now click on add button - on click it runs this function - takes whatever is in the favouriteBeerInput and pushes it into the favBeersArr
+  const getFavBeerToAddToArr = () => {
+    setFavouriteBeers([...favouriteBeers, favouriteBeerInput]);
+    setFavouriteBeerInput("");
+  };
+
+  let beerContainerTitle = searchTerm
+    ? `Search results for "${searchTerm}" and "${filterGroup}":`
+    : `Search results for "${filterGroup}":`;
+
   return (
     <div>
       <Nav />
@@ -102,12 +123,20 @@ const App = () => {
             label="Filter by:"
             options={["All", "High ABV", "Classic Range", "Acidic"]}
           />
-          <div onClick={handleClick}>
-            <Button buttonText="Surprise Me!" />
+          <div className="buttons__filter-section">
+            <div onClick={handleClick}>
+              <Button classText="button__surprise" buttonText="Surprise Me!" />
+            </div>
+            <div>
+              <Button
+                classText="button__favourites"
+                buttonText="🌟 My favourites"
+              />
+            </div>
           </div>
         </div>
 
-        <div className="random">
+        <div>
           {showRandom ? (
             <div className="random-beer-container">
               <img
@@ -120,10 +149,11 @@ const App = () => {
             </div>
           ) : (
             <BeerContainer
-              title="Search results:"
+              title={beerContainerTitle}
               beersArr={filterBeersBySearch}
             />
           )}
+          <Favourites title="My Favourites:" favouritesArr={favouriteBeers} />
         </div>
       </div>
     </div>

@@ -1,81 +1,165 @@
 @use "../../assets/sass/variables" as *;
 
 .card {
-    margin: 1rem;
+    width: 80%;
+    height: 30rem;
+    margin: auto 1rem;
     padding: 0rem 1rem;
-    width: 80vw;
+    overflow-y: auto;
+    margin: 1rem 0.5rem 0.5rem 0.5rem;
+    border-radius: 0.5rem;
+    background-color: $color-lightgrey;
+    padding: 0.23rem;
+    text-align: center;
+
     display: flex;
     flex-direction: column;
+
     justify-content: center;
-    background-color: $color-lightgrey;
-    border-radius: 0.5rem;
+    align-content: center;
+    // background-color: $color-lightgrey;
+    // border-radius: 0.5rem;
 
     &__image {
-        margin: 0.5rem auto;
-        max-width: 50%;
-        max-height: 50%;
+        margin: 1rem auto;
+        max-height: 12rem;
     }
 
     &__title {
         color: $color-bluegreen;
         margin: 0.5rem auto;
+        font-size: 1.375rem;
     }
 
     &__tagline {
         color: $color-navy;
+        font-style: italic;
         margin: 0.5rem auto;
     }
 
-    &__button {
+    &__buttons {
+        display: flex;
+        justify-content: center;
+        align-content: flex-end;
+        margin-top: 1rem;
+    }
+
+    &__button--fave,
+    &__button--info {
         background-color: $color-tangerine;
-        margin: 0.5rem auto;
+        margin: 0.5rem 0.2rem;
         padding: 0.25rem;
+        font-size: 0.75rem;
+        border-radius: 1rem;
+        border-style: none;
+        width: 6rem;
+        height: 3rem;
+        font-size: 0.825rem;
+    }
+
+    &__button--info {
+        background-color: $color-tangerine;
+    }
+
+    &__button--fave {
+        background-color: $color-bluegreen;
+    }
+
+    &__image--info {
+        height: 2rem;
+        width: 2rem;
+        text-align: right;
+    }
+
+    &__title--info {
+        color: $color-tangerine;
+        font-size: 2rem;
+    }
+
+    &__subheading--info {
+        color: $color-tangerine;
+        font-size: 1.5rem;
     }
 }
 
 @media screen and (min-width: 992px) {
 
     .card {
-        width: 15vw;
+        width: 20%;
+        height: 26rem;
+        overflow-y: auto;
         margin: 1rem 0.5rem 0.5rem 0.5rem;
         border-radius: 0.5rem;
         background-color: $color-lightgrey;
-        padding: 0.2rem;
-
-        display: flex;
-        flex-direction: column;
-        max-width: fit-content;
-        justify-content: center;
-
+        padding: 0.23rem;
+        text-align: center;
 
         &__image {
-            margin: 0.5rem auto;
-            height: 50%;
-            width: auto;
+            margin: 1rem auto;
+            max-height: 12rem;
         }
 
-        &__name {
-            font-size: 1.5rem;
+        &__title {
+            font-size: 1rem;
+            color: $color-bluegreen;
         }
 
         &__tagline {
             font-size: 1rem;
             font-style: italic;
+            color: $color-navy;
         }
 
-        &__button {
+        &__buttons {
+            display: flex;
+            justify-content: center;
+            align-content: flex-end;
+            margin-top: 0.5rem;
+        }
+
+        &__button--fave,
+        &__button--info {
             background-color: $color-tangerine;
-            margin: 0.5rem 0.2rem;
+            margin: 0.2rem 0.2rem;
             padding: 0.25rem;
-            font-size: 0.9rem;
+            font-size: 0.75rem;
+            border-radius: 1rem;
+            border-style: none;
+            width: 5rem;
+            height: 2.5rem;
+        }
+
+        &__button--info {
+            background-color: $color-tangerine;
+        }
+
+        &__button--fave {
+            background-color: $color-bluegreen;
         }
 
 
         &__cross {
-            height: 1.5rem;
-            width: 1.5rem;
-            right: 1.5rem;
-            top: 1rem;
+            font-size: 20rem;
+        }
+
+        &__image--info {
+            height: 1rem;
+            width: 1rem;
+            text-align: right;
+        }
+
+        &__title--info {
+            color: $color-tangerine;
+            font-size: 1rem;
+        }
+
+        &__subheading--info {
+            color: $color-tangerine;
+            font-size: 0.75rem;
+        }
+
+        &__text--info {
+            font-size: 0.75rem;
         }
 
         .card:hover {

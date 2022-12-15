@@ -18,31 +18,43 @@ const Card = ({ name, image, tagline, description, food_pairing }) => {
       <img className="card__image" src={image} alt="beer" />
       <h3 className="card__title">{name}</h3>
       <p className="card__tagline">"{tagline}"</p>
-      <div onClick={handleClick}>
-        <Button classText="card__button" buttonText="Find out more" />
+      <div className="card__buttons">
+        <div onClick={handleClick}>
+          <Button classText="card__button--info" buttonText="Find out more" />
+        </div>
+        <div>
+          <Button
+            classText="card__button--fave"
+            buttonText=" 🌟Add to favourites"
+          />
+        </div>
       </div>
     </>
   );
 
   const infoJSX = (
-    <div className="card__content card__content--info">
+    <>
       <img
         src={whiteCross}
-        className="card__cross"
+        className="card__image--info"
         onClick={handleClick}
         alt="Close extra information"
       />
-      <h3>{name}</h3>
+      <h3 className="card__title--info">{name}</h3>
       {description.split(".").map((sentence, index) => (
-        <p key={name + index}>{sentence + "."}</p>
+        <p className="card__text--info" key={name + index}>
+          {sentence + "."}
+        </p>
       ))}
-      <h4>Pairs well with:</h4>
+      <h4 className="card__subheading--info">Pairs well with:</h4>
       <ul>
         {food_pairing.map((sentence, index) => (
-          <li key={name + index + "food pairing"}>{sentence + "."}</li>
+          <li className="card__text--info" key={name + index + "food pairing"}>
+            {sentence + "."}
+          </li>
         ))}
       </ul>
-    </div>
+    </>
   );
 
   return <div className="card">{showInfo ? infoJSX : briefJSX}</div>;

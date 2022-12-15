@@ -6,6 +6,13 @@
     justify-content: center;
 }
 
+.random-beer-container {
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: $color-yellow;
+
+}
 
 @media screen and (min-width: 992px) {
     .card-section {
@@ -20,5 +27,8 @@
 
     }
 
+    .random-beer-container {
+        background-color: white;
+    }
 
 }

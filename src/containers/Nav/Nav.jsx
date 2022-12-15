@@ -2,7 +2,7 @@ import "./Nav.scss";
 import search from "../../assets/images/search-icon.png";
 import profile from "../../assets/images/profile-picture.png";
 // import SearchMenu from "../SearchMenu/SearchMenu";
-import { useState } from "react";
+// import { useState } from "react";
 
 const Nav = ({ allBeers }) => {
   // const [showSearchMenu, setShowSearchMenu] = useState(false);
