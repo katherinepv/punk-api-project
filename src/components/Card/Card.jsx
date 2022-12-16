@@ -2,6 +2,7 @@ import "./Card.scss";
 import Button from "../Button/Button";
 import whiteCross from "../../assets/images/white-cross.png";
 import { useState } from "react";
+import beerPlaceholder from "../../assets/images/beer-placeholder.png";
 
 const Card = ({ name, image, tagline, description, food_pairing }) => {
   const [showInfo, setShowInfo] = useState(false);
@@ -10,9 +11,11 @@ const Card = ({ name, image, tagline, description, food_pairing }) => {
     setShowInfo(!showInfo);
   };
 
+  const isImageAvailabe = image ?? beerPlaceholder;
+
   const briefJSX = (
     <>
-      <img className="card__image" src={image} alt="beer" />
+      <img className="card__image" src={isImageAvailabe} alt="beer" />
       <h3 className="card__title">{name}</h3>
       <p className="card__tagline">"{tagline}"</p>
       <div className="card__buttons">
