@@ -142,7 +142,7 @@ const App = () => {
                         <div>
                           <Button
                             classText="button__favourites"
-                            buttonText="🌟 My favourites"
+                            buttonText="🌟 Your favourites"
                           />
                         </div>
                       </Link>
