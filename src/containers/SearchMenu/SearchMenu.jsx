@@ -3,20 +3,7 @@ import SearchFilterCheckbox from "../../components/SearchFilterCheckBox/SearchFi
 import blackCross from "../../assets/images/black-cross.png";
 import "./SearchMenu.scss";
 import BeerContainer from "../BeerContainer/BeerContainer";
-import { useState } from "react";
 
-const SearchMenu = ({ beersArr }) => {
-  const [searchTerm, setSearchTerm] = useState("");
-
-  const handleInput = (event) => {
-    const userSearchInput = event.target.value.toLowerCase();
-    setSearchTerm(userSearchInput);
-  };
-
-  const filteredBeersBySearch = beersArr.filter((beer) => {
-    const beerNameLower = beer.name.toLowerCase();
-    return beerNameLower.includes(searchTerm);
-  });
 
   return (
     <div className="search-menu">
