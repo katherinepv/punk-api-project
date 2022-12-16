@@ -3,8 +3,6 @@ import Button from "../Button/Button";
 import whiteCross from "../../assets/images/white-cross.png";
 import { useState } from "react";
 
-// as a prop:
-// , "food pairing"
 const Card = ({ name, image, tagline, description, food_pairing }) => {
   const [showInfo, setShowInfo] = useState(false);
 
@@ -13,7 +11,6 @@ const Card = ({ name, image, tagline, description, food_pairing }) => {
   };
 
   const briefJSX = (
-    // className="card__content card__content--brief"
     <>
       <img className="card__image" src={image} alt="beer" />
       <h3 className="card__title">{name}</h3>

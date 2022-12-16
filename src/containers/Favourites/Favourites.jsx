@@ -1,4 +1,5 @@
 import Card from "../../components/Card/Card";
+import { Link } from "react-router-dom";
 import "./Favourites.scss";
 
 const Favourites = ({ title, favouritesArr = [] }) => {
@@ -16,7 +17,7 @@ const Favourites = ({ title, favouritesArr = [] }) => {
   );
 
   return (
-    <div classNam="favourites">
+    <div to="/favourites" className="favourites">
       <h3>{title}</h3>
       <div>{favouritesCardsJSX}</div>
     </div>

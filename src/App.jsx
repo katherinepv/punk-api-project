@@ -8,6 +8,8 @@ import FilterCheckboxes from "./components/FilterCheckBoxes/FilterCheckboxes";
 import Button from "./components/Button/Button";
 import blackCross from "./assets/images/black-cross.png";
 import Favourites from "./containers/Favourites/Favourites";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+
 // import SearchMenu from "./containers/SearchMenu/SearchMenu";
 
 const App = () => {
@@ -107,56 +109,84 @@ const App = () => {
     : `Search results for "${filterGroup}":`;
 
   return (
-    <div>
-      <Nav />
-      <div className="main">
-        <div className="filters">
-          <SearchBox
-            label="Search name: "
-            value={searchTerm}
-            searchTerm={searchTerm}
-            onInput={handleInput}
-          />
-          <FilterCheckboxes
-            onChange={handleChange}
-            selected={filterGroup}
-            label="Filter by:"
-            options={["All", "High ABV", "Classic Range", "Acidic"]}
-          />
-          <div className="buttons__filter-section">
-            <div onClick={handleClick}>
-              <Button classText="button__surprise" buttonText="Surprise Me!" />
-            </div>
-            <div>
-              <Button
-                classText="button__favourites"
-                buttonText="🌟 My favourites"
-              />
-            </div>
-          </div>
-        </div>
+    <Router>
+      <div className="app">
+        <Nav />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <div className="main">
+                  <div className="filters">
+                    <SearchBox
+                      label="Search name: "
+                      value={searchTerm}
+                      searchTerm={searchTerm}
+                      onInput={handleInput}
+                    />
+                    <FilterCheckboxes
+                      onChange={handleChange}
+                      selected={filterGroup}
+                      label="Filter by:"
+                      options={["All", "High ABV", "Classic Range", "Acidic"]}
+                    />
+                    <div className="buttons__filter-section">
+                      <div onClick={handleClick}>
+                        <Button
+                          classText="button__surprise"
+                          buttonText="Surprise Me!"
+                        />
+                      </div>
+                      <Link to="/favourites">
+                        <div>
+                          <Button
+                            classText="button__favourites"
+                            buttonText="🌟 My favourites"
+                          />
+                        </div>
+                      </Link>
+                    </div>
+                  </div>
 
-        <div>
-          {showRandom ? (
-            <div className="random-beer-container">
-              <img
-                src={blackCross}
-                className="card__cross"
-                onClick={handleClick}
-                alt="Close random beer"
+                  <div>
+                    {showRandom ? (
+                      <div className="random-beer-container">
+                        <img
+                          src={blackCross}
+                          className="card__cross--random"
+                          onClick={handleClick}
+                          alt="Close random beer"
+                        />
+                        <BeerContainer
+                          title="We recommend:"
+                          beersArr={randomBeer}
+                        />
+                      </div>
+                    ) : (
+                      <BeerContainer
+                        title={beerContainerTitle}
+                        beersArr={filterBeersBySearch}
+                      />
+                    )}
+                  </div>
+                </div>
+              </>
+            }
+          />
+
+          <Route
+            path="/favourites"
+            element={
+              <Favourites
+                title="Your Favourites:"
+                favouritesArr={favouriteBeers}
               />
-              <BeerContainer title="We recommend:" beersArr={randomBeer} />
-            </div>
-          ) : (
-            <BeerContainer
-              title={beerContainerTitle}
-              beersArr={filterBeersBySearch}
-            />
-          )}
-          <Favourites title="My Favourites:" favouritesArr={favouriteBeers} />
-        </div>
+            }
+          />
+        </Routes>
       </div>
-    </div>
+    </Router>
   );
 };
 
